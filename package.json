@@ -1,14 +1,11 @@
 {
 	"name": "fluxxchat-protokolla",
 	"version": "1.0.0",
-	"main": "dist/index.js",
-	"types" : "dist/index.d.ts",
+	"main": "lib/index.ts",
+	"types" : "lib/index.ts",
 	"repository": "https://github.com/FluxxChat/FluxxChat-protokolla",
 	"author": "Iikka Hauhio <iikka.hauhio@helsinki.fi>",
 	"license": "GPL-3.0-or-later",
-	"scripts": {
-		"build": "tsc"
-	},
 	"devDependencies": {
 		"typescript": "^3.2.4"
 	},
