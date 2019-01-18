@@ -18,9 +18,11 @@ export class Message {
 }
 
 export class NewRuleMessage extends Message {
+	type: 'NEW_RULE';
 	ruleName: string;
 }
 
 export class TextMessage extends Message {
+	type: 'TEXT';
 	textContent: string;
 }
