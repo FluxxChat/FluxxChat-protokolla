@@ -12,6 +12,7 @@
 		"sourceMap": true,
 		"target": "ES2016",
 		"outDir": "dist",
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"declaration": true
 	}
 }

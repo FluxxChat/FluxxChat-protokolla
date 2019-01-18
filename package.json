@@ -1,7 +1,8 @@
 {
 	"name": "fluxxchat-protokolla",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"types" : "dist/index.d.ts",
 	"repository": "https://github.com/FluxxChat/FluxxChat-protokolla",
 	"author": "Iikka Hauhio <iikka.hauhio@helsinki.fi>",
 	"license": "GPL-3.0-or-later",
