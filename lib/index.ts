@@ -1,83 +1,63 @@
 type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE';
 
-export class Message {
-	type: MessageType;
+export type Message = CardMessage | NewRuleMessage | TextMessage | JoinRoomMessage | CreateRoomMessage | LeaveRoomMessage | RoomCreatedMessage | RoomStateMessage;
 
-	static fromJSON(json: string): Message {
-		const obj = JSON.parse(json);
-		switch (obj.type as MessageType) {
-			case 'NEW_RULE':
-				return Object.assign(new NewRuleMessage(), obj);
-			case 'CARD':
-				return Object.assign(new NewRuleMessage(), obj);
-			case 'TEXT':
-				return Object.assign(new TextMessage(), obj);
-			case 'JOIN_ROOM':
-				return Object.assign(new JoinRoomMessage(), obj);
-			case 'CREATE_ROOM':
-				return Object.assign(new CreateRoomMessage(), obj);
-			case 'LEAVE_ROOM':
-				return Object.assign(new LeaveRoomMessage(), obj);
-			case 'ROOM_CREATED':
-				return Object.assign(new RoomCreatedMessage(), obj);
-			case 'ROOM_STATE':
-				return Object.assign(new RoomStateMessage(), obj);
-		}
-	}
+export interface MessageBase {
+	type: MessageType;
 }
 
-export class CardMessage extends Message {
+export interface CardMessage extends MessageBase {
 	type: 'CARD';
 	card: Card;
 }
 
-export class Card {
+export interface Card {
 	name: string;
 	description: string;
 	ruleName: string;
 	parameters: RuleParameters;
 }
 
-export class RuleParameters {
+export interface RuleParameters {
 	[key: string]: any;
 }
 
-export class NewRuleMessage extends Message {
+export interface NewRuleMessage extends MessageBase {
 	type: 'NEW_RULE';
 	ruleName: string;
 }
 
-export class TextMessage extends Message {
+export interface TextMessage extends MessageBase {
 	type: 'TEXT';
 	textContent: string;
 	senderNickname?: string;
 }
 
-export class JoinRoomMessage extends Message {
+export interface JoinRoomMessage extends MessageBase {
 	type: 'JOIN_ROOM';
 	nickname: string;
 	roomId: string;
 }
 
-export class CreateRoomMessage extends Message {
+export interface CreateRoomMessage extends MessageBase {
 	type: 'CREATE_ROOM';
 }
 
-export class RoomCreatedMessage extends Message {
+export interface RoomCreatedMessage extends MessageBase {
 	type: 'ROOM_CREATED';
 	roomId: string;
 }
 
-export class LeaveRoomMessage extends Message {
+export interface LeaveRoomMessage extends MessageBase {
 	type: 'LEAVE_ROOM';
 }
 
-export class RoomStateMessage extends Message {
+export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
 	users: User[];
 }
 
-export class User {
+export interface User {
 	id: string;
 	nickname: string;
 }
