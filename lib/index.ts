@@ -1,4 +1,4 @@
-type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM';
+type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE';
 
 export class Message {
 	type: MessageType;
@@ -18,6 +18,10 @@ export class Message {
 				return Object.assign(new CreateRoomMessage(), obj);
 			case 'LEAVE_ROOM':
 				return Object.assign(new LeaveRoomMessage(), obj);
+			case 'ROOM_CREATED':
+				return Object.assign(new RoomCreatedMessage(), obj);
+			case 'ROOM_STATE':
+				return Object.assign(new RoomStateMessage(), obj);
 		}
 	}
 }
@@ -59,6 +63,21 @@ export class CreateRoomMessage extends Message {
 	type: 'CREATE_ROOM';
 }
 
+export class RoomCreatedMessage extends Message {
+	type: 'ROOM_CREATED';
+	roomId: string;
+}
+
 export class LeaveRoomMessage extends Message {
 	type: 'LEAVE_ROOM';
+}
+
+export class RoomStateMessage extends Message {
+	type: 'ROOM_STATE';
+	users: User[];
+}
+
+export class User {
+	id: string;
+	nickname: string;
 }
