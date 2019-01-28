@@ -15,12 +15,19 @@ export interface Card {
 	name: string;
 	description: string;
 	ruleName: string;
+	parameterTypes: RuleParameterTypes;
 	parameters: RuleParameters;
 }
 
 export interface RuleParameters {
 	[key: string]: any;
 }
+
+export interface RuleParameterTypes {
+	[key: string]: RuleParameterType;
+}
+
+export type RuleParameterType = '' | 'player' | 'number';
 
 export interface NewRuleMessage extends MessageBase {
 	type: 'NEW_RULE';
