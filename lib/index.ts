@@ -19,14 +19,6 @@ export interface Card {
 	parameters: RuleParameters;
 }
 
-export interface EnabledRule {
-	rule: {
-		title: string;
-		description: string;
-	};
-	parameter: any;
-}
-
 export interface RuleParameters {
 	[key: string]: any;
 }
@@ -70,7 +62,7 @@ export interface LeaveRoomMessage extends MessageBase {
 export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
 	users: User[];
-	enabledRules: EnabledRule[];
+	enabledRules: Card[];
 }
 
 export interface User {
