@@ -62,6 +62,7 @@ export interface LeaveRoomMessage extends MessageBase {
 export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
 	users: User[];
+	turnUserId: string;
 	enabledRules: Card[];
 }
 
