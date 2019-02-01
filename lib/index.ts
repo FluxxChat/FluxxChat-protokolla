@@ -31,7 +31,7 @@ export type RuleParameterType = '' | 'player' | 'number';
 
 export interface NewRuleMessage extends MessageBase {
 	type: 'NEW_RULE';
-	ruleName: string;
+	card: Card;
 }
 
 export interface TextMessage extends MessageBase {
