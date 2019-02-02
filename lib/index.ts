@@ -13,7 +13,7 @@ export interface CardMessage extends MessageBase {
 
 export interface Card {
 	name: string;
-	description: string;dangerouslySetInnerHTML
+	description: string;
 	ruleName: string;
 	parameterTypes: RuleParameterTypes;
 	parameters: RuleParameters;
@@ -31,7 +31,8 @@ export type RuleParameterType = '' | 'player' | 'number';
 
 export interface NewRuleMessage extends MessageBase {
 	type: 'NEW_RULE';
-	card: Card;
+	ruleName: string;
+	ruleParameters: RuleParameters;
 }
 
 export interface TextMessage extends MessageBase {
