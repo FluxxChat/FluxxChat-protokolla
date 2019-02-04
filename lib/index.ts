@@ -70,6 +70,7 @@ export interface RoomStateMessage extends MessageBase {
 
 export interface ErrorMessage extends MessageBase {
 	type: 'ERROR';
+	message: string;
 }
 
 export interface User {
