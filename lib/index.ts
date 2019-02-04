@@ -1,6 +1,6 @@
-type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE';
+type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE' | 'NAME_IN_USE';
 
-export type Message = CardMessage | NewRuleMessage | TextMessage | JoinRoomMessage | CreateRoomMessage | LeaveRoomMessage | RoomCreatedMessage | RoomStateMessage;
+export type Message = CardMessage | NewRuleMessage | TextMessage | JoinRoomMessage | CreateRoomMessage | LeaveRoomMessage | RoomCreatedMessage | RoomStateMessage | NameInUse;
 
 export interface MessageBase {
 	type: MessageType;
@@ -55,6 +55,10 @@ export interface LeaveRoomMessage extends MessageBase {
 export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
 	users: User[];
+}
+
+export interface NameInUse extends MessageBase {
+	type: 'NAME_IN_USE';
 }
 
 export interface User {
