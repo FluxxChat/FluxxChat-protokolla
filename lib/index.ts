@@ -15,6 +15,7 @@ export interface Card {
 	name: string;
 	description: string;
 	ruleName: string;
+	parameterTypes: RuleParameterTypes;
 	parameters: RuleParameters;
 }
 
@@ -22,14 +23,22 @@ export interface RuleParameters {
 	[key: string]: any;
 }
 
+export interface RuleParameterTypes {
+	[key: string]: RuleParameterType;
+}
+
+export type RuleParameterType = '' | 'player' | 'number';
+
 export interface NewRuleMessage extends MessageBase {
 	type: 'NEW_RULE';
 	ruleName: string;
+	ruleParameters: RuleParameters;
 }
 
 export interface TextMessage extends MessageBase {
 	type: 'TEXT';
 	textContent: string;
+	markdown?: boolean;
 	senderNickname?: string;
 }
 
@@ -55,6 +64,8 @@ export interface LeaveRoomMessage extends MessageBase {
 export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
 	users: User[];
+	turnUserId: string;
+	enabledRules: Card[];
 }
 
 export interface NameInUse extends MessageBase {
