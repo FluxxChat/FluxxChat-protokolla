@@ -82,4 +82,7 @@ export interface ErrorMessage extends MessageBase {
 export interface SystemMessage extends MessageBase {
 	type: 'SYSTEM';
 	message: string;
+	severity: Severity;
 }
+
+export type Severity = 'info' | 'warning';
