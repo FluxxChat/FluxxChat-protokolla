@@ -1,6 +1,6 @@
-type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE' | 'ERROR';
+type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE' | 'ERROR' | 'SYSTEM';
 
-export type Message = CardMessage | NewRuleMessage | TextMessage | JoinRoomMessage | CreateRoomMessage | LeaveRoomMessage | RoomCreatedMessage | RoomStateMessage | ErrorMessage;
+export type Message = CardMessage | NewRuleMessage | TextMessage | JoinRoomMessage | CreateRoomMessage | LeaveRoomMessage | RoomCreatedMessage | RoomStateMessage | ErrorMessage | SystemMessage;
 
 export interface MessageBase {
 	type: MessageType;
@@ -68,12 +68,17 @@ export interface RoomStateMessage extends MessageBase {
 	enabledRules: Card[];
 }
 
+export interface User {
+	id: string;
+	nickname: string;
+}
+
 export interface ErrorMessage extends MessageBase {
 	type: 'ERROR';
 	message: string;
 }
 
-export interface User {
-	id: string;
-	nickname: string;
+export interface SystemMessage extends MessageBase {
+	type: 'SYSTEM';
+	message: string;
 }
