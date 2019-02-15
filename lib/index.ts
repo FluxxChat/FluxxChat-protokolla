@@ -1,6 +1,32 @@
-type MessageType = 'CARD' | 'NEW_RULE' | 'TEXT' | 'JOIN_ROOM' | 'CREATE_ROOM' | 'LEAVE_ROOM' | 'ROOM_CREATED' | 'ROOM_STATE' | 'ERROR' | 'SYSTEM';
+type MessageType =
+	'CARD' |
+	'EMPTY_HAND' |
+	'NEW_RULE' |
+	'TEXT' |
+	'VALIDATE_TEXT' |
+	'VALIDATE_TEXT_RESPONSE' |
+	'JOIN_ROOM' |
+	'CREATE_ROOM' |
+	'LEAVE_ROOM' |
+	'ROOM_CREATED' |
+	'ROOM_STATE' |
+	'ERROR' |
+	'SYSTEM';
 
-export type Message = CardMessage | NewRuleMessage | TextMessage | JoinRoomMessage | CreateRoomMessage | LeaveRoomMessage | RoomCreatedMessage | RoomStateMessage | ErrorMessage | SystemMessage;
+export type Message =
+	CardMessage |
+	EmptyHandMessage |
+	NewRuleMessage |
+	TextMessage |
+	ValidateTextMessage |
+	ValidateTextMessageResponse |
+	JoinRoomMessage |
+	CreateRoomMessage |
+	LeaveRoomMessage |
+	RoomCreatedMessage |
+	RoomStateMessage |
+	ErrorMessage |
+	SystemMessage;
 
 export interface MessageBase {
 	type: MessageType;
@@ -9,6 +35,10 @@ export interface MessageBase {
 export interface CardMessage extends MessageBase {
 	type: 'CARD';
 	card: Card;
+}
+
+export interface EmptyHandMessage extends MessageBase {
+	type: 'EMPTY_HAND';
 }
 
 export interface Card {
@@ -42,6 +72,17 @@ export interface TextMessage extends MessageBase {
 	senderNickname?: string;
 }
 
+export interface ValidateTextMessage extends MessageBase {
+	type: 'VALIDATE_TEXT';
+	textContent: string;
+}
+
+export interface ValidateTextMessageResponse extends MessageBase {
+	type: 'VALIDATE_TEXT_RESPONSE';
+	valid: boolean;
+	invalidReason?: string;
+}
+
 export interface JoinRoomMessage extends MessageBase {
 	type: 'JOIN_ROOM';
 	nickname: string;
@@ -65,6 +106,7 @@ export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
 	users: User[];
 	turnUserId: string;
+	turnEndTime: number;
 	enabledRules: Card[];
 	nickname: string;
 }
