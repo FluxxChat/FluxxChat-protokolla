@@ -27,7 +27,7 @@ export interface RuleParameterTypes {
 	[key: string]: RuleParameterType;
 }
 
-export type RuleParameterType = '' | 'player' | 'number';
+export type RuleParameterType = '' | 'player' | 'number' | string[];
 
 export interface NewRuleMessage extends MessageBase {
 	type: 'NEW_RULE';
