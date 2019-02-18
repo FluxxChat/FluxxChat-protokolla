@@ -16,8 +16,6 @@
  */
 
 type MessageType =
-	'CARD' |
-	'EMPTY_HAND' |
 	'NEW_RULE' |
 	'TEXT' |
 	'VALIDATE_TEXT' |
@@ -31,8 +29,6 @@ type MessageType =
 	'SYSTEM';
 
 export type Message =
-	CardMessage |
-	EmptyHandMessage |
 	NewRuleMessage |
 	TextMessage |
 	ValidateTextMessage |
@@ -47,15 +43,6 @@ export type Message =
 
 export interface MessageBase {
 	type: MessageType;
-}
-
-export interface CardMessage extends MessageBase {
-	type: 'CARD';
-	card: Card;
-}
-
-export interface EmptyHandMessage extends MessageBase {
-	type: 'EMPTY_HAND';
 }
 
 export interface Card {
@@ -87,6 +74,8 @@ export interface TextMessage extends MessageBase {
 	textContent: string;
 	markdown?: boolean;
 	senderNickname?: string;
+	senderId?: string;
+	timestamp: string;
 }
 
 export interface ValidateTextMessage extends MessageBase {
@@ -125,6 +114,8 @@ export interface RoomStateMessage extends MessageBase {
 	turnUserId: string;
 	turnEndTime: number;
 	enabledRules: Card[];
+	hand: Card[];
+	userId: string;
 	nickname: string;
 }
 
