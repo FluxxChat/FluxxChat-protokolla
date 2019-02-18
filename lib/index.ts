@@ -75,7 +75,7 @@ export interface TextMessage extends MessageBase {
 	markdown?: boolean;
 	senderNickname?: string;
 	senderId?: string;
-	timestamp: string;
+	timestamp?: string;
 }
 
 export interface ValidateTextMessage extends MessageBase {
