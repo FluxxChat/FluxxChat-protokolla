@@ -26,7 +26,8 @@ type MessageType =
 	'ROOM_CREATED' |
 	'ROOM_STATE' |
 	'ERROR' |
-	'SYSTEM';
+	'SYSTEM' |
+	'KEEP_ALIVE';
 
 export type Message =
 	NewRuleMessage |
@@ -39,7 +40,8 @@ export type Message =
 	RoomCreatedMessage |
 	RoomStateMessage |
 	ErrorMessage |
-	SystemMessage;
+	SystemMessage |
+	KeepAliveMessage;
 
 export interface MessageBase {
 	type: MessageType;
@@ -136,3 +138,7 @@ export interface SystemMessage extends MessageBase {
 }
 
 export type Severity = 'info' | 'warning';
+
+export interface KeepAliveMessage extends MessageBase {
+	type: 'KEEP_ALIVE';
+}
