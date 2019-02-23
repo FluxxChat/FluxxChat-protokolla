@@ -79,7 +79,6 @@ export interface TextMessage extends MessageBase {
 	markdown?: boolean;
 	senderNickname?: string;
 	senderId?: string;
-	senderProfileImg?: string;
 	timestamp?: string;
 }
 
