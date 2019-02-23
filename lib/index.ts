@@ -25,6 +25,7 @@ type MessageType =
 	'LEAVE_ROOM' |
 	'ROOM_CREATED' |
 	'ROOM_STATE' |
+	'PROFILE_IMG_CHANGE' |
 	'ERROR' |
 	'SYSTEM' |
 	'KEEP_ALIVE';
@@ -39,6 +40,7 @@ export type Message =
 	LeaveRoomMessage |
 	RoomCreatedMessage |
 	RoomStateMessage |
+	ProfileImgChangeMessage |
 	ErrorMessage |
 	SystemMessage |
 	KeepAliveMessage;
@@ -124,6 +126,12 @@ export interface RoomStateMessage extends MessageBase {
 export interface User {
 	id: string;
 	nickname: string;
+	profileImg: string;
+}
+
+export interface ProfileImgChangeMessage {
+	type: 'PROFILE_IMG_CHANGE';
+	profileImg: string;
 }
 
 export interface ErrorMessage extends MessageBase {
