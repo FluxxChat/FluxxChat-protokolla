@@ -90,7 +90,7 @@ export interface ValidateTextMessage extends MessageBase {
 export interface ValidateTextMessageResponse extends MessageBase {
 	type: 'VALIDATE_TEXT_RESPONSE';
 	valid: boolean;
-	invalidReason?: string;
+	invalidReason?: string[];
 }
 
 export interface JoinRoomMessage extends MessageBase {
