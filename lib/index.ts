@@ -55,6 +55,7 @@ export interface Card {
 	ruleName: string;
 	parameterTypes: RuleParameterTypes;
 	parameters: RuleParameters;
+	values?: object;
 }
 
 export interface RuleParameters {
