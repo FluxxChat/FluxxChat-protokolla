@@ -137,12 +137,14 @@ export interface ProfileImgChangeMessage {
 export interface ErrorMessage extends MessageBase {
 	type: 'ERROR';
 	message: string;
+	values?: object;
 }
 
 export interface SystemMessage extends MessageBase {
 	type: 'SYSTEM';
 	message: string;
 	severity: Severity;
+	values?: object;
 }
 
 export type Severity = 'info' | 'warning';
