@@ -119,6 +119,7 @@ export interface RoomStateMessage extends MessageBase {
 	hand: Card[];
 	userId: string;
 	nickname: string;
+	playableCardsLeft: number;
 }
 
 export interface User {
