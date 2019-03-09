@@ -55,7 +55,7 @@ export interface Card {
 	ruleName: string;
 	parameterTypes: RuleParameterTypes;
 	parameters: RuleParameters;
-	values?: object;
+	values?: { [key: string]: string } | undefined;
 }
 
 export interface RuleParameters {
@@ -138,14 +138,14 @@ export interface ProfileImgChangeMessage {
 export interface ErrorMessage extends MessageBase {
 	type: 'ERROR';
 	message: string;
-	values?: object;
+	values?: { [key: string]: string } | undefined;
 }
 
 export interface SystemMessage extends MessageBase {
 	type: 'SYSTEM';
 	message: string;
 	severity: Severity;
-	values?: object;
+	values?: { [key: string]: string } | undefined;
 }
 
 export type Severity = 'info' | 'warning';
