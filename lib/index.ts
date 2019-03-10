@@ -138,14 +138,14 @@ export interface ProfileImgChangeMessage {
 export interface ErrorMessage extends MessageBase {
 	type: 'ERROR';
 	message: string;
-	values?: { [key: string]: string } | undefined;
+	values?: { [key: string]: string };
 }
 
 export interface SystemMessage extends MessageBase {
 	type: 'SYSTEM';
 	message: string;
 	severity: Severity;
-	values?: { [key: string]: string } | undefined;
+	values?: { [key: string]: string };
 }
 
 export type Severity = 'info' | 'warning';
