@@ -83,6 +83,7 @@ export interface NewRuleMessage extends MessageBase {
 export interface TextMessage extends MessageBase {
 	type: 'TEXT';
 	textContent: string;
+	validateOnly: boolean;
 	markdown?: boolean;
 	senderNickname?: string;
 	senderId?: string;
@@ -128,6 +129,7 @@ export interface RoomStateMessage extends MessageBase {
 	hand: Card[];
 	userId: string;
 	nickname: string;
+	playableCardsLeft: number;
 }
 
 export interface User {
