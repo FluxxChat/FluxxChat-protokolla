@@ -55,6 +55,7 @@ export interface Card {
 	ruleName: string;
 	parameterTypes: RuleParameterTypes;
 	parameters: RuleParameters;
+	values?: SubstitutionValues;
 }
 
 export interface RuleParameters {
@@ -63,6 +64,10 @@ export interface RuleParameters {
 
 export interface RuleParameterTypes {
 	[key: string]: RuleParameterType;
+}
+
+export interface SubstitutionValues {
+	[key: string]: string;
 }
 
 export type RuleParameterType = '' | 'player' | 'number' | string[];
@@ -77,6 +82,7 @@ export interface TextMessage extends MessageBase {
 	type: 'TEXT';
 	textContent: string;
 	imageContent: string;
+	validateOnly: boolean;
 	markdown?: boolean;
 	senderNickname?: string;
 	senderId?: string;
@@ -123,6 +129,7 @@ export interface RoomStateMessage extends MessageBase {
 	hand: Card[];
 	userId: string;
 	nickname: string;
+  playableCardsLeft: number;
 	variables: UiVariables;
 }
 
@@ -145,12 +152,14 @@ export interface ProfileImgChangeMessage {
 export interface ErrorMessage extends MessageBase {
 	type: 'ERROR';
 	message: string;
+	values?: SubstitutionValues;
 }
 
 export interface SystemMessage extends MessageBase {
 	type: 'SYSTEM';
 	message: string;
 	severity: Severity;
+	values?: SubstitutionValues;
 }
 
 export type Severity = 'info' | 'warning';
