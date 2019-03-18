@@ -76,6 +76,7 @@ export interface NewRuleMessage extends MessageBase {
 export interface TextMessage extends MessageBase {
 	type: 'TEXT';
 	textContent: string;
+	imageContent: string;
 	markdown?: boolean;
 	senderNickname?: string;
 	senderId?: string;
@@ -85,6 +86,7 @@ export interface TextMessage extends MessageBase {
 export interface ValidateTextMessage extends MessageBase {
 	type: 'VALIDATE_TEXT';
 	textContent: string;
+	imageContent: string;
 }
 
 export interface ValidateTextMessageResponse extends MessageBase {
@@ -121,6 +123,12 @@ export interface RoomStateMessage extends MessageBase {
 	hand: Card[];
 	userId: string;
 	nickname: string;
+	variables: UiVariables;
+}
+
+export interface UiVariables {
+	inputMinHeight?: number;
+	imageMessages?: boolean;
 }
 
 export interface User {
