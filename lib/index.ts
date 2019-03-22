@@ -28,6 +28,7 @@ type MessageType =
 	'PROFILE_IMG_CHANGE' |
 	'ERROR' |
 	'SYSTEM' |
+	'LANGUAGE_DATA' |
 	'KEEP_ALIVE';
 
 export type Message =
@@ -43,6 +44,7 @@ export type Message =
 	ProfileImgChangeMessage |
 	ErrorMessage |
 	SystemMessage |
+	LanguageDataMessage |
 	KeepAliveMessage;
 
 export interface MessageBase {
@@ -163,6 +165,11 @@ export interface SystemMessage extends MessageBase {
 }
 
 export type Severity = 'info' | 'warning';
+
+export interface LanguageDataMessage extends MessageBase {
+	type: 'LANGUAGE_DATA';
+	messages: {[locale: string]: {[message: string]: string}};
+}
 
 export interface KeepAliveMessage extends MessageBase {
 	type: 'KEEP_ALIVE';
