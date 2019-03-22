@@ -168,7 +168,7 @@ export type Severity = 'info' | 'warning';
 
 export interface LanguageDataMessage extends MessageBase {
 	type: 'LANGUAGE_DATA';
-	messages: {[key: string]: {[key: string]: string}};
+	messages: {[locale: string]: {[message: string]: string}};
 }
 
 export interface KeepAliveMessage extends MessageBase {
