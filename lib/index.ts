@@ -131,13 +131,14 @@ export interface RoomStateMessage extends MessageBase {
 	hand: Card[];
 	userId: string;
 	nickname: string;
-  playableCardsLeft: number;
+	playableCardsLeft: number;
 	variables: UiVariables;
 }
 
 export interface UiVariables {
 	inputMinHeight?: number;
 	imageMessages?: boolean;
+	emojiPicker?: boolean;
 }
 
 export interface User {
