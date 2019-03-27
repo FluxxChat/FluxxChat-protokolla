@@ -18,7 +18,6 @@
 type MessageType =
 	'NEW_RULE' |
 	'TEXT' |
-	'VALIDATE_TEXT' |
 	'VALIDATE_TEXT_RESPONSE' |
 	'JOIN_ROOM' |
 	'CREATE_ROOM' |
@@ -33,7 +32,6 @@ type MessageType =
 export type Message =
 	NewRuleMessage |
 	TextMessage |
-	ValidateTextMessage |
 	ValidateTextMessageResponse |
 	JoinRoomMessage |
 	CreateRoomMessage |
@@ -88,11 +86,6 @@ export interface TextMessage extends MessageBase {
 	senderNickname?: string;
 	senderId?: string;
 	timestamp?: string;
-}
-
-export interface ValidateTextMessage extends MessageBase {
-	type: 'VALIDATE_TEXT';
-	textContent: string;
 }
 
 export interface ValidateTextMessageResponse extends MessageBase {
