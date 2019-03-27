@@ -82,6 +82,7 @@ export interface TextMessage extends MessageBase {
 	type: 'TEXT';
 	textContent: string;
 	imageContent: string;
+	audioContent: {url: string, length: number};
 	validateOnly: boolean;
 	markdown?: boolean;
 	senderNickname?: string;
@@ -92,7 +93,6 @@ export interface TextMessage extends MessageBase {
 export interface ValidateTextMessage extends MessageBase {
 	type: 'VALIDATE_TEXT';
 	textContent: string;
-	imageContent: string;
 }
 
 export interface ValidateTextMessageResponse extends MessageBase {
@@ -129,13 +129,14 @@ export interface RoomStateMessage extends MessageBase {
 	hand: Card[];
 	userId: string;
 	nickname: string;
-  playableCardsLeft: number;
+	playableCardsLeft: number;
 	variables: UiVariables;
 }
 
 export interface UiVariables {
 	inputMinHeight?: number;
 	imageMessages?: boolean;
+	audioMessages?: boolean;
 }
 
 export interface User {
