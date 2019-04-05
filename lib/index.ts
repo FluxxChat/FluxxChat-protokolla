@@ -139,6 +139,7 @@ export interface UiVariables {
 	inputMinHeight?: number;
 	imageMessages?: boolean;
 	emojiPicker?: boolean;
+	disableBackspace?: boolean;
 }
 
 export interface User {
