@@ -135,6 +135,7 @@ export interface UiVariables {
 	audioMessages?: boolean;
 	emojiPicker?: boolean;
 	threads?: boolean;
+	disableBackspace?: boolean;
 }
 
 export interface User {
