@@ -88,6 +88,7 @@ export interface TextMessage extends MessageBase {
 	senderNickname?: string;
 	senderId?: string;
 	timestamp?: string;
+	thread?: {senderId: string, timestamp: string}
 }
 
 export interface ValidateTextMessageResponse extends MessageBase {
@@ -133,6 +134,7 @@ export interface UiVariables {
 	imageMessages?: boolean;
 	audioMessages?: boolean;
 	emojiPicker?: boolean;
+	threads?: boolean;
 }
 
 export interface User {
