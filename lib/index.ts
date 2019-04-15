@@ -25,6 +25,8 @@ type MessageType =
 	'ROOM_CREATED' |
 	'ROOM_STATE' |
 	'PROFILE_IMG_CHANGE' |
+	'CLIENT_LANGUAGE_CHANGE' |
+	'WORD_PREDICTION' |
 	'ERROR' |
 	'SYSTEM' |
 	'LANGUAGE_DATA' |
@@ -40,6 +42,8 @@ export type Message =
 	RoomCreatedMessage |
 	RoomStateMessage |
 	ProfileImgChangeMessage |
+	ClientLanguageChangeMessage |
+	WordPredictionMessage |
 	ErrorMessage |
 	SystemMessage |
 	LanguageDataMessage |
@@ -88,7 +92,8 @@ export interface TextMessage extends MessageBase {
 	senderNickname?: string;
 	senderId?: string;
 	timestamp?: string;
-	thread?: {senderId: string, timestamp: string}
+	thread?: {senderId: string, timestamp: string};
+	predictedWord?: string;
 }
 
 export interface ValidateTextMessageResponse extends MessageBase {
@@ -136,6 +141,7 @@ export interface UiVariables {
 	emojiPicker?: boolean;
 	threads?: boolean;
 	disableBackspace?: boolean;
+	wordSuggestions?: boolean;
 }
 
 export interface User {
@@ -147,6 +153,16 @@ export interface User {
 export interface ProfileImgChangeMessage {
 	type: 'PROFILE_IMG_CHANGE';
 	profileImg: string;
+}
+
+export interface ClientLanguageChangeMessage {
+	type: 'CLIENT_LANGUAGE_CHANGE';
+	language: string;
+}
+
+export interface WordPredictionMessage {
+	type: 'WORD_PREDICTION';
+	prediction: string;
 }
 
 export interface ErrorMessage extends MessageBase {
