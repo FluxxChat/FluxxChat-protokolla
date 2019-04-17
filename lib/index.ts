@@ -123,9 +123,10 @@ export interface LeaveRoomMessage extends MessageBase {
 
 export interface RoomStateMessage extends MessageBase {
 	type: 'ROOM_STATE';
-	users: User[];
+	users: User[]; // in turn order
 	turnUserId: string;
-	turnEndTime: number;
+	turnEndTime: number; // in milliseconds since Unix epoch
+	turnLength: number; // in seconds
 	enabledRules: Card[];
 	hand: Card[];
 	userId: string;
