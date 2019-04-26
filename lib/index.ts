@@ -211,11 +211,20 @@ export interface JoinRoomMessage extends MessageBase {
  */
 export interface CreateRoomMessage extends MessageBase {
 	type: 'CREATE_ROOM';
+	params?: RoomParameters;
+}
+
+/**
+ * Sent by the server in response to a CREATE_ROOM message.
+ */
+export interface RoomParameters {
 	turnLength?: number; // in seconds
 	nStartingHand?: number; // number of cards a player receives upon joining
 	nDraw?: number; // initial number of cards a player draws each turn
 	nPlay?: number; // initial number of cards a player can play each turn
-	nMaxHand?: number | null; // hand size where you can't draw
+	nMaxHand?: number | null; // hand size where you can't draw any more
+	deck?: { [key: string]: number }; // numbers of each card in custom deck
+	startingRules?: Card[]; // rules in force when room is created
 }
 
 /**
