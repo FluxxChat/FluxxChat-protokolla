@@ -105,6 +105,11 @@ export interface JoinRoomMessage extends MessageBase {
 
 export interface CreateRoomMessage extends MessageBase {
 	type: 'CREATE_ROOM';
+	turnLength?: number; // in seconds
+	nStartingHand?: number; // number of cards a player receives upon joining
+	nDraw?: number; // initial number of cards a player draws each turn
+	nPlay?: number; // initial number of cards a player can play each turn
+	nMaxHand?: number | null; // hand size where you can't draw
 }
 
 export interface RoomCreatedMessage extends MessageBase {
