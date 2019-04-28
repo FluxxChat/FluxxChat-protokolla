@@ -24,6 +24,7 @@ type MessageType =
 	'LEAVE_ROOM' |
 	'ROOM_CREATED' |
 	'ROOM_STATE' |
+	'SERVER_STATE' |
 	'PROFILE_IMG_CHANGE' |
 	'CLIENT_LANGUAGE_CHANGE' |
 	'WORD_PREDICTION' |
@@ -41,6 +42,7 @@ export type Message =
 	LeaveRoomMessage |
 	RoomCreatedMessage |
 	RoomStateMessage |
+	ServerStateMessage |
 	ProfileImgChangeMessage |
 	ClientLanguageChangeMessage |
 	WordPredictionMessage |
@@ -215,7 +217,7 @@ export interface CreateRoomMessage extends MessageBase {
 }
 
 /**
- * Sent by the server in response to a CREATE_ROOM message.
+ * All of the ways in which a rooms can be configured
  */
 export interface RoomParameters {
 	turnLength?: number; // in seconds
@@ -225,6 +227,16 @@ export interface RoomParameters {
 	nMaxHand?: number | null; // hand size where you can't draw any more
 	deck?: { [key: string]: number }; // numbers of each card in custom deck
 	startingRules?: Card[]; // rules in force when room is created
+}
+
+/**
+ * Sent by the server to communicate facts the client isn't expected to know by default,
+ * e.g. full list of availabble cards
+ */
+export interface ServerStateMessage extends MessageBase {
+	type: 'SERVER_STATE';
+	defaultRoomParameters?: RoomParameters;
+	availableCards?: Card[];
 }
 
 /**
