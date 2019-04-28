@@ -171,7 +171,7 @@ export interface TextMessage extends MessageBase {
 	 */
 	timestamp?: string;
 	/**
-	 * Information about the thread.
+	 * Indicates this message is a response to a message thread.
 	 * Threads are identified by the sender of the first message and the timestamp of the first message.
 	 */
 	thread?: {senderId: string, timestamp: string};
