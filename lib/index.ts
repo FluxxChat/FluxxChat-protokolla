@@ -24,12 +24,12 @@ type MessageType =
 	'LEAVE_ROOM' |
 	'ROOM_CREATED' |
 	'ROOM_STATE' |
+	'SERVER_STATE' |
 	'PROFILE_IMG_CHANGE' |
 	'CLIENT_LANGUAGE_CHANGE' |
 	'WORD_PREDICTION' |
 	'ERROR' |
 	'SYSTEM' |
-	'LANGUAGE_DATA' |
 	'KEEP_ALIVE';
 
 export type Message =
@@ -41,12 +41,12 @@ export type Message =
 	LeaveRoomMessage |
 	RoomCreatedMessage |
 	RoomStateMessage |
+	ServerStateMessage |
 	ProfileImgChangeMessage |
 	ClientLanguageChangeMessage |
 	WordPredictionMessage |
 	ErrorMessage |
 	SystemMessage |
-	LanguageDataMessage |
 	KeepAliveMessage;
 
 /**
@@ -211,6 +211,44 @@ export interface JoinRoomMessage extends MessageBase {
  */
 export interface CreateRoomMessage extends MessageBase {
 	type: 'CREATE_ROOM';
+	params?: RoomParameters;
+}
+
+/**
+ * All of the ways in which a rooms can be configured
+ */
+export interface RoomParameters {
+	turnLength?: number; // in seconds
+	nStartingHand?: number; // number of cards a player receives upon joining
+	nDraw?: number; // initial number of cards a player draws each turn
+	nPlay?: number; // initial number of cards a player can play each turn
+	nMaxHand?: number | null; // hand size where you can't draw any more
+	deck?: { [key: string]: number }; // numbers of each card in custom deck
+	startingRules?: Card[]; // rules in force when room is created
+}
+
+/**
+ * Sent by the server to communicate facts the client isn't expected to know by default,
+ * e.g. full list of availabble cards
+ */
+export interface ServerStateMessage extends MessageBase {
+	type: 'SERVER_STATE';
+	/**
+	 * A RoomParameters object with the server's default values.
+	 */
+	defaultRoomParameters?: RoomParameters;
+	/**
+	 * Contains one of each type of card supported by the server
+	 */
+	availableCards?: Card[];
+	/**
+	 * Contains a translation string for each translation code for each supported language.
+	 */
+	messages?: {[locale: string]: {[message: string]: string}};
+	/**
+	 * Contains the identifiers of all rooms running on the server
+	 */
+	rooms?: string[];
 }
 
 /**
@@ -401,17 +439,6 @@ export interface SystemMessage extends MessageBase {
 }
 
 export type Severity = 'info' | 'warning';
-
-/**
- * Sent by the server after a connection is established.
- */
-export interface LanguageDataMessage extends MessageBase {
-	type: 'LANGUAGE_DATA';
-	/**
-	 * Contains a translation string for each translation code for each supported language.
-	 */
-	messages: {[locale: string]: {[message: string]: string}};
-}
 
 export interface KeepAliveMessage extends MessageBase {
 	type: 'KEEP_ALIVE';
