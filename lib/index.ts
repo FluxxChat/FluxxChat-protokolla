@@ -30,7 +30,6 @@ type MessageType =
 	'WORD_PREDICTION' |
 	'ERROR' |
 	'SYSTEM' |
-	'LANGUAGE_DATA' |
 	'KEEP_ALIVE';
 
 export type Message =
@@ -48,7 +47,6 @@ export type Message =
 	WordPredictionMessage |
 	ErrorMessage |
 	SystemMessage |
-	LanguageDataMessage |
 	KeepAliveMessage;
 
 /**
@@ -235,8 +233,22 @@ export interface RoomParameters {
  */
 export interface ServerStateMessage extends MessageBase {
 	type: 'SERVER_STATE';
+	/**
+	 * A RoomParameters object with the server's default values.
+	 */
 	defaultRoomParameters?: RoomParameters;
+	/**
+	 * Contains one of each type of card supported by the server
+	 */
 	availableCards?: Card[];
+	/**
+	 * Contains a translation string for each translation code for each supported language.
+	 */
+	messages?: {[locale: string]: {[message: string]: string}};
+	/**
+	 * Contains the identifiers of all rooms running on the server
+	 */
+	rooms?: string[];
 }
 
 /**
@@ -427,17 +439,6 @@ export interface SystemMessage extends MessageBase {
 }
 
 export type Severity = 'info' | 'warning';
-
-/**
- * Sent by the server after a connection is established.
- */
-export interface LanguageDataMessage extends MessageBase {
-	type: 'LANGUAGE_DATA';
-	/**
-	 * Contains a translation string for each translation code for each supported language.
-	 */
-	messages: {[locale: string]: {[message: string]: string}};
-}
 
 export interface KeepAliveMessage extends MessageBase {
 	type: 'KEEP_ALIVE';
