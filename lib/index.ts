@@ -218,12 +218,33 @@ export interface CreateRoomMessage extends MessageBase {
  * All of the ways in which a rooms can be configured
  */
 export interface RoomParameters {
-	turnLength?: number; // in seconds
-	nStartingHand?: number; // number of cards a player receives upon joining
-	nDraw?: number; // initial number of cards a player draws each turn
-	nPlay?: number; // initial number of cards a player can play each turn
-	nMaxHand?: number | null; // hand size where you can't draw any more
-	deck?: { [key: string]: number }; // numbers of each card in custom deck
+	/**
+	* Length of each turn in seconds
+	*/
+	turnLength?: number;
+	/**
+	* Number of cards a player receives upon joining
+	*/
+	nStartingHand?: number;
+	/**
+	* Number of cards a player draws each turn
+	*/
+	nDraw?: number;
+	/**
+	* Number of cards a player can play each turn
+	*/
+	nPlay?: number;
+	/**
+	* Hand size at which you can't draw any more
+	*/
+	nMaxHand?: number | null;
+	/**
+	* number of each card id in deck (probability distribution)
+	*/
+	deck?: { [key: string]: number };
+	/**
+	* Array of rules in force when a room is created
+	*/
 	startingRules?: Card[]; // rules in force when room is created
 }
 
